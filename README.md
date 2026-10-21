@@ -70,6 +70,24 @@ mengirimkannya; file lokal tetap disimpan. Atur `SCREENSHOT_PATH`,
 satu gambar setiap kali dijalankan; jadwalkan dengan Windows Task Scheduler
 jika ingin berjalan berkala.
 
+Secara default gambar dikirim ke nomor pribadi melalui `WATZAP_PHONE_NO`.
+Untuk mengirim ke grup, atur `WHATSAPP_TARGET=group` dan isi `WATZAP_GROUP_ID`
+dengan ID grup dari WatZap (format berakhiran `@g.us`), atau berikan ID melalui
+CLI:
+
+```powershell
+py .\screenshot_tradingview.py --target group --group-id "6281234567890-1234567890@g.us"
+```
+
+Gunakan `--target phone` untuk mengirim kembali ke nomor pribadi. Pengiriman
+grup menggunakan endpoint WatZap `/send_image_group`; pengiriman pribadi tetap
+menggunakan `/send_image_url`.
+
+Caption WhatsApp memuat teks `WHATSAPP_CAPTION` (misalnya `Made by RafiqiID`)
+beserta simbol, harga terakhir yang ditampilkan TradingView, timeframe aktif
+chart, dan tanggal/waktu lokal. Informasi ini hanya ada di caption; screenshot
+chart tidak ditambahkan watermark atau teks lain.
+
 ## Catatan keamanan
 
 - Jangan bagikan `.env` atau commit file tersebut ke repository.
